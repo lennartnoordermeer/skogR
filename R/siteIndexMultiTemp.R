@@ -41,7 +41,7 @@ siteIndexMultiTemp <- function( Ho , yrs , SP ){
           }
           ages[[ si  ]] <- a
           
-          res[ si ] <- sum( abs( residuals ) ) 
+          res[ si ] <- sqrt(sum( (residuals^2 ))) 
      }
      
      Min <- which.min( res  ) - 1
@@ -70,7 +70,7 @@ siteIndexMultiTemp <- function( Ho , yrs , SP ){
                }
           }
           ages[[ si ]] <- a
-          residual[ si ] <- sum( abs( residuals ) ) 
+          residual[ si ] <- sqrt(sum( (residuals^2 )))
      }
      # minimize residuals
      #plot( residual, type = "l" ), ylim = c( 0 , 100 ) )
