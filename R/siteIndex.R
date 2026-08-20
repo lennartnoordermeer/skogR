@@ -2,6 +2,8 @@
 #' 
 #' calculate site index according to the Norwegian H40 system
 #' 
+#' @name siteIndex
+#' 
 #' @param age age at breast height (years)
 #' @param HO top height, i.e. mean of the 100 largest trees with respect to dbh per hectar (m)
 #' @param SP species code (1=spruce, 2= pine, 3= birch)
@@ -10,14 +12,14 @@
 #' @details Reference age of 40 years
 #' @seealso HeightGrowth, HeightDiffSi
 #' @author Lennart Noordermeer \email{lennart.noordermeer@gmail.com}
-#' @references Tveite (1977), Tveite & Braastad (1981), Eriksson (1997), Sharma et al (2011)
+#' @references Tveite (1977), Tveite & Braastad (1981), Eriksson (1997), Sharma et al (2011) Eriksson, H., Johansson, U., & Kiviste, A., 1997. A site‐index model for pure and mixed stands of Betula pendula and Betula pubescens in Sweden. Scand. J. For. Res. 12, 149–156. https://doi.org/10.1080/02827589709355396
 #' @examples
 #' a <- c(55,55) # ages at breast height
 #' b <- c(10.23744, 24.81046) # dominant heights (m)
 #' SiteIndex( a, b, 1) 
 #' @export
 
-SiteIndex <- function( age, HO, SP, method = "SHARMA-BRUNNER" ) {
+siteIndex <- function( age, HO, SP, method = "SHARMA-BRUNNER" ) {
 
   HO <- HO - 1.3
   
@@ -40,7 +42,7 @@ SiteIndex <- function( age, HO, SP, method = "SHARMA-BRUNNER" ) {
     diff[ age > 119 ] <- 3.913
     SIpine <- 14 + 3.0 * ( ( HO - h14 ) / diff ) + 1.3
     
-    #birch
+    #birch (Eriksson 1997)
     b1 <- 394
     b2 <- 1.387
     k <- 7
